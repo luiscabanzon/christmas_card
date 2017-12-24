@@ -307,7 +307,12 @@ bitmap = [
           var myVar = setInterval(oneType, 50);
           function oneType() {
               if (t >= text.length){clearInterval(oneType); return null}
-              $(container).text($(container).text().slice(0,-1) + text[t] + "█")
+              if (text[t] == "_"){
+                $(container).html($(container).html() + "<br>" + "█")
+              }
+              else {
+                $(container).html($(container).html().slice(0,-1) + text[t] + "█")
+              }
               t++
           }
         }
@@ -405,12 +410,12 @@ for (var row = 0; row < bitmap.length; row++){
 // END BUILD TREE
 
     //???    }
-
+/*
         typing("Machines do not know what Christmas is", "#text-box_0")
         typing("But they are good at learning...", "#text-box_1")
         typing("Merry Christmas!", "#text-box_2")
-
-
+*/
+typing("Machines do not know what Christmas is_But they are good at learning..._Merry Christmas!", "#text-box_0")
 
     </script>
 </html>
