@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Luis Cabanzon">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Merry Christmas!</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <style>
+    
+        
+        body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /*background-color: #eee;*/
+  background-color: #000;
+  color: #3F0;
+
+
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+/*
+.cell {
+  height: 1em;
+  width: 1em;
+  background-color: #f5a500;
+}*/
+
+#table {
+    width: 22.0em;
+    height: 22.0em;
+    margin: 0.0em;
+    border: 0.0em solid #333;
+}
+
+
+.cell {
+    float: left;
+    width: 2em;
+    height: 2em;
+    background-color: #f50;
+    font-size:1em;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+    opacity: .4
+}
+
+
+td {
+  opacity: .1;
+}
+
+
+
+.container{
+width:100%;
+/*height:200px;*/
+background-color:grey;
+}
+.content{
+float:left;
+/*height:30px;*/
+}
+.content1{
+background-color:blue;
+width: 60%;
+/*width:300px;*/
+}
+.content2{
+width: 40%; 
+/*width:200px;*/
+background-color:green;
+}
+
+
+
+
+
+
+        
+    </style>
+
+
+<style type="text/css">
+.chessboard {
+    width: 22.0em;
+    height: 22.0em;
+    margin: 0.0em;
+    border: 0.0em solid #333;
+}
+.black {
+    float: left;
+    width: 2em;
+    height: 2em;
+    background-color: #999;
+      font-size:1em;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+}
+.white {
+    float: left;
+    width: 2em;
+    height: 2em;
+    background-color: #fff;
+    font-size:1em;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+}
+</style>
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+    <div class="container">
+<div class="content1 content">
+
+
+<table id="table">
+  <!-- TABLE -->
+</table>
+
+
+</div>
+<div class="content2 content">
+
+
+
+<div id="text-box_0"></div>
+<div id="text-box_1"></div>
+<div id="text-box_2"></div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+  </body>
+  <footer class="footer">
+
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+
+
+      // BEGIN GENETIC TREE
+
+
+
+function eval(row, sol) {
+  if (row.length != sol.length) {
+    console.log("Not same length!");
+    console.log(row.length);
+    console.log(sol.length);
+    return false
+  }
+  var output = [];
+  for (var i = 0; i < row.length; i++) {
+      if (row[i] == sol[i]) {
+        output.push(1);
+      }
+      else {
+        output.push(0);
+      }
+  }
+  return output.reduce(function(a, b) { return a + b; }, 0);
+}
+
+
+objective = [0,0,0,0,0,1,0,0,0,0,0]
+
+function genRandSol (len) {
+  var sol = [];
+  for (var i = 0; i < len; i++) {
+    sol.push(Math.round(Math.random()))
+  }
+  return sol
+};
+
+
+popSize = 10;
+geneSize = 11;
+midPos = Math.round(geneSize / 2);
+population = [];
+for (var i = 0; i < popSize; i++) {
+  population.push(genRandSol(geneSize));
+  console.log(i);
+};
+
+
+bitmap = [
+[0,0,0,0,0,1,0,0,0,0,0],
+[0,0,0,0,1,1,1,0,0,0,0],
+[0,0,0,1,1,1,1,1,0,0,0],
+[0,0,1,1,1,1,1,1,1,0,0],
+[0,0,0,1,1,1,1,1,0,0,0],
+[0,0,1,1,1,1,1,1,1,0,0],
+[0,1,1,1,1,1,1,1,1,1,0],
+[0,0,1,1,1,1,1,1,1,0,0],
+[0,1,1,1,1,1,1,1,1,1,0],
+[1,1,1,1,1,1,1,1,1,1,1],
+[0,0,0,0,1,1,1,0,0,0,0],
+[0,0,0,0,1,1,1,0,0,0,0]
+];
+
+
+      // END GENETIC TREE
+
+
+
+
+
+
+      // BEGIN MAIN
+
+      height = 12;
+      width = 11;
+
+      function createTable (height, width) {
+        for (h=0; h < height; h++){
+          //
+          $("#table").append("<tr id=row_" + h + "></tr>");
+          var row = $("#row_" + h);
+          for(w=0; w < width; w++){
+            row.append("<td id=cell_" + h + "_" + w + ">*</td>");
+
+          }
+        }
+
+        }
+        createTable(height, width);
+
+
+        function typing (text, container) {
+          /*for(t = 0; t < text.length; t++) {
+            console.log(t)
+            $("#text-box").text($("#text-box").text().slice(0,-1) + text[t] + "█")
+            setTimeout(function() {
+            console.log(t),
+            (t+t+1)*1000
+            })
+          }*/
+          var t = 0
+          var myVar = setInterval(oneType, 50);
+          function oneType() {
+              if (t >= text.length){clearInterval(oneType); return null}
+              $(container).text($(container).text().slice(0,-1) + text[t] + "█")
+              t++
+          }
+        }
+        // END MAIN
+
+
+// BEGIN BUILD TREE
+
+function flipBit(bit, onOff) {
+  if (onOff == 1){
+    bit.css('opacity', '1');
+    return true
+  }
+  if (onOff == 0) {
+    bit.css('opacity', '0.1');
+    return true
+  }
+  return false
+}
+
+
+
+function printTree(solution, tableRow) {
+  for (var s = 0; s < solution.length; s++) {
+    flipBit($("#cell_" + tableRow + "_" + s), solution[s])
+  }
+}
+
+
+
+for (treeRow = 0; treeRow < bitmap.length; treeRow++) { 
+
+    population = population.sort(function(a,b){ return eval(b, bitmap[treeRow]) - eval(a, bitmap[treeRow])});
+    iterarion = 0;
+    while (JSON.stringify(population[0]) !== JSON.stringify(bitmap[treeRow])) {
+
+      population = population.slice(0,4);
+
+      for (var i = 0; population.length < popSize; i++) {
+      population.push(population[i].slice(0,midPos).concat(genRandSol(geneSize-midPos)));
+      population.push(genRandSol(geneSize-midPos).concat(population[i].slice(midPos-1, geneSize)));
+      }
+
+      population = population.sort(function(a,b){return eval(b, bitmap[treeRow]) - eval(a, bitmap[treeRow])}).slice(0, geneSize);
+
+      console.log(population[0]);
+      iterarion++;
+      console.log(iterarion);
+      printTree(population[0], treeRow);
+
+      if (iterarion > 1000){break}
+    }
+}
+
+// END BUILD TREE
+
+    //???    }
+
+        typing("Machines do not know what Christmas is", "#text-box_0")
+        typing("But they are good at learning...", "#text-box_1")
+        typing("Merry Christmas!", "#text-box_2")
+
+
+
+    </script>
+</html>
