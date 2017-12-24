@@ -121,14 +121,14 @@ float:left;
 /*height:30px;*/
 }
 .content1{
-background-color:blue;
+/*background-color:blue;*/
 width: 60%;
 /*width:300px;*/
 }
 .content2{
 width: 40%; 
 /*width:200px;*/
-background-color:green;
+/*background-color:green;*/
 }
 
 
@@ -170,10 +170,6 @@ background-color:green;
 </style>
 
 
-
-
-
-
   </head>
 
   <body>
@@ -192,22 +188,13 @@ background-color:green;
 <div class="content2 content">
 
 
-
 <div id="text-box_0"></div>
 <div id="text-box_1"></div>
 <div id="text-box_2"></div>
 
 
-
 </div>
 </div>
-
-
-
-
-
-
-
 
 
   </body>
@@ -351,6 +338,8 @@ function printTree(solution, tableRow) {
 
 
 
+// BEGIN INITIAL LOOP
+/*
 for (treeRow = 0; treeRow < bitmap.length; treeRow++) { 
 
     population = population.sort(function(a,b){ return eval(b, bitmap[treeRow]) - eval(a, bitmap[treeRow])});
@@ -373,7 +362,45 @@ for (treeRow = 0; treeRow < bitmap.length; treeRow++) {
 
       if (iterarion > 1000){break}
     }
+} */
+// END INITIAL LOOP
+
+
+
+function genRow(treeRow){
+var iterarion = 0;
+var population = [];
+for (var i = 0; i < popSize; i++) {
+  population.push(genRandSol(geneSize));
+  console.log(i);
+};
+population = population.sort(function(a,b){ return eval(b, bitmap[treeRow]) - eval(a, bitmap[treeRow])});
+bestSolutions = {};
+
+var genTree = setInterval(oneGeneration, 50);
+function oneGeneration() {
+  if (JSON.stringify(population[0]) == JSON.stringify(bitmap[treeRow]) || iterarion > 1000) {clearInterval(oneGeneration); return null}
+  population = population.slice(0,4);
+
+      for (var i = 0; population.length < popSize; i++) {
+      population.push(population[i].slice(0,midPos).concat(genRandSol(geneSize-midPos)));
+      population.push(genRandSol(geneSize-midPos).concat(population[i].slice(midPos-1, geneSize)));
+      }
+
+      population = population.sort(function(a,b){return eval(b, bitmap[treeRow]) - eval(a, bitmap[treeRow])}).slice(0, geneSize);
+
+      console.log(population[0]);
+      console.log(iterarion);
+      printTree(population[0], treeRow);
+      iterarion++;
 }
+}
+
+
+for (var row = 0; row < bitmap.length; row++){
+  genRow(row)
+}
+
 
 // END BUILD TREE
 
